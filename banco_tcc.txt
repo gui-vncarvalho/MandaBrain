@@ -1,0 +1,156 @@
+CREATE DATABASE MandaBrain;
+
+USE MandaBrain;
+
+CREATE TABLE Estado (
+	idEstado int AUTO_INCREMENT,
+	uf varchar(2) NOT NULL,
+	nome varchar(30) NOT NULL,
+	PRIMARY KEY(idEstado)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE Cidade (
+	idCidade int auto_increment,
+	nome varchar(60) NOT NULL,
+	PRIMARY KEY(idCidade)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE Vestibular (
+	idVestibular int auto_increment,
+	dataInscricao date NOT NULL,
+	localProva varchar(80) NOT NULL,
+	dataRealizacao date NOT NULL,
+	PRIMARY KEY(idVestibular)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE Universidade (
+	idUniversidade int primary key auto_increment,
+	cnpj varchar(100) NOT NULL UNIQUE,
+	email varchar(60) NOT NULL,
+	cidade varchar(60) NOT NULL,
+	telefone varchar(50) NOT NULL,
+	rua varchar(80) NOT NULL,
+	numero int(5) NOT NULL,
+	bairro varchar(30) NOT NULL,
+	nomeUniversidade varchar(50) NOT NULL
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+create table compromissos (
+	id_compromisso int primary key auto_increment,
+	nome varchar(50) not null,
+	descricao varchar(100) not null,
+	data date not null,
+	tipo varchar(100) not null,
+	idUsuario int not null
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+ALTER TABLE compromissos ADD FOREIGN KEY FK_idUsuario(idUsuario) REFERENCES usuario(idUsuario);
+
+create table cursos (
+	id_cursos int primary key auto_increment,
+	tipo varchar(15) not null,
+	forma varchar(15) not null,
+	nome varchar(60) not null,
+	imagem_curso varchar(100) not null,
+	data_imagem DATETIME NOT NULL,
+	descricao varchar(100) not null,
+	com_mandabrain decimal(10,2) not null,
+	sem_mandabrain decimal(10,2) not null,
+	idUniversidade int not null,
+	FOREIGN KEY
+	FK_Universidade(idUniversidade)
+	REFERENCES
+	Universidade(idUniversidade)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+create table paginas(
+	id_paginas int primary key auto_increment,
+	paginas varchar(50) not null
+)AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+create table ebook(
+	id_ebook int primary key auto_increment,
+	titulo varchar(50) not null,
+	descricao varchar(100) not null,
+	imagem_ebook varchar(60) not null,
+	data_ebook datetime not null,
+	id_paginas int not null,	
+	FOREIGN KEY
+	FK_paginas(id_paginas)
+	REFERENCES
+	paginas(id_paginas)
+)AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+create table tipoUsuario(
+	idTipoUsuario int primary key auto_increment,
+	tipo_usuario varchar(50) not null
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO tipoUsuario(tipo_usuario) VALUES("Aluno"),("Professor"),("Admin");
+
+create table usuario(
+	idUsuario int primary key auto_increment,
+	nome varchar(100) not null,
+	sobrenome varchar(100) not null,
+	cpf varchar(30) not null,
+	rg varchar(30) not null,
+	email varchar(100) not null,
+	telefone varchar(20) not null,
+	escola_universidade varchar(60),
+	sexo varchar(15) not null,
+	dt_nasc date not null,
+	imagem_usuario varchar(100),
+	data_imagem datetime,
+	imagem_declaracao varchar(100),
+	data_declaracao datetime,
+	senha varchar(100) not null,
+	idTipoUsuario int,
+	FOREIGN KEY
+	FK_tipo_usuario(idTipoUsuario)
+	REFERENCES
+	tipoUsuario(idTipoUsuario)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+create table sala (
+	id_sala int primary key auto_increment,
+	nome varchar(60) not null,
+	descricao varchar(100) not null,
+	idUsuario int not null, 
+	FOREIGN KEY                                                                            
+	FK_idUsuario(idUsuario)
+	REFERENCES
+	usuario(idUsuario)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE sala_temporaria(
+	id_salatemp int primary key auto_increment,
+	id_sala int not null,
+	idUsuario int not null
+)AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+ALTER TABLE sala_temporaria ADD FOREIGN KEY FK_id_sala(id_sala) REFERENCES sala(id_sala);
+
+ALTER TABLE sala_temporaria ADD FOREIGN KEY FK_idUsuario(idUsuario) REFERENCES usuario(idUsuario);
+
+CREATE TABLE arquivos(
+	id_arquivo int primary key auto_increment,
+	arquivo varchar(100) not null,
+	assunto varchar(100) not null,
+	data_arquivo datetime not null,
+	idUsuario int not null,
+	id_sala int not null
+)AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+ALTER TABLE arquivos ADD FOREIGN KEY FK_idUsuario(idUsuario) REFERENCES usuario(idUsuario);
+
+ALTER TABLE arquivos ADD FOREIGN KEY FK_id_sala(id_sala) REFERENCES sala(id_sala);
+
+
+CREATE TABLE email_ebook(
+	id_email int primary key auto_increment,
+	email_ebook varchar(100) not null,
+	tipo_email varchar(50),
+	idUsuario int not null
+	);
+ALTER TABLE email_ebook ADD FOREIGN KEY FK_idUsuario(idUsuario) REFERENCES usuario(idUsuario);

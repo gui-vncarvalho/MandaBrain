@@ -1,0 +1,8 @@
+INSERT INTO Universidade (cnpj,email,cidade,telefone,rua,numero,bairro,nomeUniversidade) VALUES ("XXXXXXXXXXXX","XXX@XXX.XXX","Santa Isabel","XXXX-XXXX","XXXXXXXXXXXXXXXXXX",20,"XXXXXXXXXXXX","TESTE");
+
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Arquitetura",1);
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Medicina",1);
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Biologia",1);
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Economia",1);
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Pedagogia",1);
+INSERT INTO Cursos (tipo,forma,nome,idUniversidade) VALUES ("Pós Graduação","Presencial","Engenharia Civil",1);

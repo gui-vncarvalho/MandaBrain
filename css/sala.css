@@ -1,0 +1,214 @@
+#esquerdo {
+	display: table;
+	height: 100%;
+	float: left;
+	background: #3c4759;
+	box-shadow: 0 0 2px #000;
+	color: #FFF;
+}
+
+#nome_sala_membros{
+	width: 100%;
+	text-align: center;
+	font-size: 25px;
+	margin-top: 10%;
+}
+
+/* Participantes */
+#lista_participantes{
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+.scroll {
+	color: #FFF;
+	overflow-x: hidden;
+	margin: 0 auto;
+    width: 90%;
+	height: 400px;
+    overflow: scroll;
+	overflow-x: hidden;
+	border: none;
+}
+.iten_part{
+	margin-top:10%; 
+}
+.iten_part:hover{
+	opacity: .60;
+	cursor: pointer;
+}
+#adc_membro{
+	display: table;
+	width: 90%;
+	margin-top: 30%;
+	margin-left: 5%;
+	background: #F4CE51;
+	font-weight: bold;
+	border: none;
+}
+#adc_membro_e{
+	display: table;
+	width: 90%;
+	margin-top: 5%;
+	margin-left: 5%;
+	border: none;
+	font-weight: bold;
+	background: #F4CE51;
+}
+#adc_membro:hover{
+	opacity: .60;
+	cursor: pointer;
+}
+#adc_membro_e:hover{
+	opacity: .60;
+	cursor: pointer;
+}
+
+/*Parte de cima direta*/
+#titulo_direita_topo{
+	text-align: center;
+	margin-top: -5%;
+	color: #fff;
+}
+#titulo_direita_topo_pagina{
+	text-align: right;
+	margin-right: 20%;
+	padding: 1% 0;
+	color: #F4CE51;
+	font-size: 16px;
+}
+.iten_part_direito_cima{
+	margin-top:2%;
+	color: #fff;
+	padding-bottom: 1%;
+	border-bottom:1px solid #fff;
+}
+.iten_part_direito_cima:hover{
+	opacity: .60;
+	cursor: pointer;
+}
+
+/*Parte de cima baixo*/
+#titulo_direita_topo_baixo{
+	margin: 0 auto;
+	font-size: 10px;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	padding-bottom: 4%;
+	margin-top: -3%;
+	display: table;
+}#titulo_direita_topo_baixo2{
+	margin: 0 auto;
+	font-size: 20px;
+	height: 50%;
+	margin-left: 2%;
+	width: 100%;
+	text-align: center;
+	color: #F4CE51;
+}
+#lista_participantes_direita{
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+
+.scroll_direita {
+	overflow-x: hidden;
+	margin: 0 auto;
+    width: 90%;
+	height: 300px;
+    overflow: scroll;
+	overflow-x: hidden;
+	border: none;
+}
+#calendario{
+	display: table;
+	padding: 0;
+	margin-top: 0;
+}
+/*Scroll editado*/
+.force-overflow
+{
+	min-height: 450px;
+}
+
+
+/*
+ *  STYLE 1
+ */
+
+.scroll::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: none;
+}
+.scroll::-webkit-scrollbar-thumb:hover
+{
+	background-color: #000;
+}
+
+.scroll::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: none;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #F4CE51;
+}
+
+
+.scroll_direita::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: none;
+}
+.scroll_direita::-webkit-scrollbar-thumb:hover
+{
+	background-color: #000;
+}
+
+.scroll_direita::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: none;
+}
+
+.scroll_direita::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #F4CE51;
+}
+/* fecha Scroll editado*/
+
+
+@media screen and (max-width:850px){
+	#tudo{
+	}
+	#esquerdo{
+		width: 100%;
+		height: 10%;
+	}
+	#nome_sala_membros{
+		display: none;
+	}
+	#nome_sala{
+		display: none;
+	}
+	#mostrar{
+		display: none;
+	}
+	#direito_cima{
+		width: 100%;
+	}
+	#direito_baixo{
+		width: 100%;
+	}
+	
+}
+  

@@ -1,0 +1,232 @@
+
+/*
+
+When editing make sure the margin, padding, and border sizes are the same for the
+header cells, week header cells, and day cells. If they are different the calendar
+will look messed up.
+
+*/
+
+/*
+Root calendar element
+*/
+@font-face {
+		font-family: Open_Sans;
+		src:url('../../fonts/opensans-regular-webfont.woff');
+	}
+@font-face {
+		font-family: Open_Sans_SemiBold;
+		src:url('../../fonts/opensans-semibold-webfont.woff');
+	}
+@font-face {
+		font-family: Open_Sans_Light;
+		src:url('../../fonts/opensans-light-webfont.woff');
+	}
+
+
+	h1{
+		font-weight: bold;
+		margin-bottom: 5%;
+	}
+
+	h2{
+		font-family: Open_Sans_SemiBold;
+	}	
+
+	h3{
+		font-family: Open_Sans_SemiBold;
+	}
+	p{
+		font-family: Open_Sans_Light;
+	}
+
+*{
+	font-family: Open_Sans;
+}
+.branco{
+	background: white !important;
+}
+.menu_superior{
+	background: #4ECDC4;
+	padding-top: 0.5% !important;
+	padding-bottom: 0.5% !important; 
+	margin-bottom: -2.3%;
+	border-radius: 0 !important;
+}	
+.margem{
+	padding-top: 0.1% !important;
+}
+.letra_branca{
+	color:white;
+}
+.botao_amarelo{
+	background: #F4CE51 !important;
+	color:white !important;
+}
+.JFrontierCal {
+	border: 0px solid red;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	/*width: 1024px;*/
+	/*
+	If you want a background image for the entire calendar than you must comment out the
+	individual background-images for the day cells below. Then you can uncomment this
+	line and use your image of choice. You may also want to enable borders on the day
+	cells.
+	*/
+	/*background-image:url('images/bw-tree.jpg');*/
+}
+/*
+Style shared by all day cells.
+*/
+.JFrontierCal .JFrontierCal-Day-Cell,
+.JFrontierCal .JFrontierCal-Day-Cell-Last,
+.JFrontierCal .JFrontierCal-PrevMonth-Day-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Day-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Day-Cell-Last,
+.JFrontierCal .JFrontierCal-Day-Cell-Droppable,
+.JFrontierCal .JFrontierCal-Day-Cell-Today {
+	padding: 0px;
+	border-bottom: 0px solid red;
+	border-left: 0px solid red;
+	float: left;
+	clear: right;
+	/*
+	height is only used for initialization. heights are calculated by aspect 
+	ratio relative to width of calendar parent div.
+	*/
+		text-align: right;
+}
+/*
+Style for day cells on the current month.
+*/
+.JFrontierCal .JFrontierCal-Day-Cell,
+.JFrontierCal .JFrontierCal-Day-Cell-Last{
+	background-color: white;/*dias*/
+	border: 5% solid gray !important;
+	color: #444444;	
+}
+.JFrontierCal:hover .JFrontierCal-Day-Cell:hover,
+.JFrontierCal:hover .JFrontierCal-Day-Cell-Last:hover{
+	background-color: #efe7e7;/*dias*/
+	border: 5% solid gray !important;
+	color: #444444;	
+}
+/*
+Style for previous month and next month day cells.
+*/
+.JFrontierCal .JFrontierCal-PrevMonth-Day-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Day-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Day-Cell-Last {
+	color: #999999;
+	background:#d9d9d9; /*Dias do mês anterior e proxímo*/
+}
+/*
+Style for Saturday cells.
+*/
+.JFrontierCal .JFrontierCal-Day-Cell-Last,
+.JFrontierCal .JFrontierCal-NextMonth-Day-Cell-Last {
+	border-right: 0px solid #ffffff;
+}
+/*
+Style for hover effect on droppable day cells (drag and drop agenda items.)
+*/
+.JFrontierCal .JFrontierCal-Day-Cell-Droppable {
+	background: red;
+}
+/*
+Style for current date day cell
+*/
+.JFrontierCal .JFrontierCal-Day-Cell-Today {
+	background-color: #e9e9e9;/*Dia de hj*/
+	color: #444444;
+	/*background-image: none;*/
+}
+/*
+Style for header cells (day name cells at top of calendar)
+*/
+.JFrontierCal .JFrontierCal-Header-Cell,
+.JFrontierCal .JFrontierCal-Header-Cell-Last {	
+	border-left: 6px solid #FCDC74;
+	background-color: #F4CE51; /*Menu com os dias da semana*/
+	padding-top:1% !important;
+	padding-bottom:3% !important;
+	margin-bottom: 1%;
+	text-align: center;
+	color: white;
+	float: left;
+	clear: right;
+	height: 17px;
+}
+/*
+Style for Saturday header cell at top of calendar.
+*/
+.JFrontierCal .JFrontierCal-Header-Cell-Last {
+	border-right: 0px solid #ffffff;
+}
+/*
+Style for week Header cells (cells for day numbers above each week)
+*/
+.JFrontierCal .JFrontierCal-Week-Header-Cell, 
+.JFrontierCal .JFrontierCal-Week-Header-Cell-Last,
+.JFrontierCal .JFrontierCal-PrevMonth-Week-Header-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Week-Header-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Week-Header-Cell-Last {
+	border-left: 0px solid #ffffff;
+	text-align: center !important; /*Dias parte de cima*/
+	color: black;
+	background: white;
+	float: left;
+	clear: right;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	border-left: white solid 10px;
+	border-right: white solid 10px;
+	border-top: 5px solid #f5f0f0;
+	text-align: right;
+}
+/*
+Style for week header cells for the previous and next month. Make them a little darker.
+*/
+.JFrontierCal .JFrontierCal-PrevMonth-Week-Header-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Week-Header-Cell,
+.JFrontierCal .JFrontierCal-NextMonth-Week-Header-Cell-Last  {
+	color: #333333;
+}
+/*
+Style for Saturday week header cell.
+*/
+.JFrontierCal .JFrontierCal-Week-Header-Cell-Last,
+.JFrontierCal .JFrontierCal-NextMonth-Week-Header-Cell-Last {
+	border-right: 0px solid #ffffff;
+}
+/*
+Style for agenda items. These are simply default values. Some values can be configured through the API (height, color, background-color, font, etc...)
+*/
+.JFrontierCal-Modal-Agenda-Item,
+.JFrontierCal .JFrontierCal-Day-Cell .JFrontierCal-Agenda-Item {
+	/*
+	Don't let text creep outside div
+	*/
+	overflow: hidden;
+	background-color: red;
+	color: #ffffff;
+	margin: 0px;
+	white-space: nowrap;
+	text-align: left;
+}
+/*
+Style for the "more" link seen when not all agenda items fit within a day cell.
+*/
+.JFrontierCal .JFrontierCal-Day-Cell .JFrontierCal-Agenda-More-Link {
+	/*
+	Don't let text creep outside div
+	*/
+	overflow: hidden;
+	color: blue;
+	margin: 0px;
+	white-space: nowrap;
+	text-align: center;
+}
+

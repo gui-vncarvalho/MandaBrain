@@ -1,0 +1,54 @@
+.borda {
+    background-color: #3C4759;
+}
+
+.home-section {
+    height: 100%;
+    padding-top: 110px;
+    text-align: center;
+    border: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+@media(min-width:767px) {
+    .navbar {
+        padding: 20px 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .nav {
+        padding: 10px 0;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+    }
+}
+
+.img_usu {
+	padding-top: 10px;
+}
+
+.nome_usu {
+	color: #4ECDC4;
+}
+
+.link {
+	color: #F4CE51;
+}
+
+.btn-warning {
+    background-color: #F4CE51;
+    border: #F4CE51;
+}

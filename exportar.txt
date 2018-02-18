@@ -1,0 +1,5 @@
+
+
+mysqldump -u root --password --databases mandabrain >E:\Mandabrain_1.5\mandabrain.sql
+
+mysql -u root --password <E:\Mandabrain_1.5\mandabrain.sql

@@ -1,0 +1,29 @@
+fieldset{
+ width: 750px;
+ height: 60%;
+ margin: 10px auto;
+ color: #444;
+ border: 5px solid #ccc;
+ font-family: Helvetica;
+ padding: 15px;
+}
+
+h2{
+ text-align: center;
+}
+
+div{
+ font-size: 18px;
+}
+
+.direita{
+ text-align: right;
+}
+
+.center{
+ text-align: center;
+}
+
+.justificado{
+ text-align: justify;
+}
