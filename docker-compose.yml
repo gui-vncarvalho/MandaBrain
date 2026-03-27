@@ -1,0 +1,42 @@
+services:
+  mysql_legacy:
+    image: mysql:8.0
+    container_name: mandabrain_mysql_legacy
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root_legacy
+      MYSQL_DATABASE: mandabrain_legacy
+      MYSQL_USER: mandabrain
+      MYSQL_PASSWORD: mandabrain
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_legacy_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_legacy"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  postgres_v2:
+    image: postgres:16
+    container_name: mandabrain_postgres_v2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mandabrain_v2
+      POSTGRES_USER: mandabrain
+      POSTGRES_PASSWORD: mandabrain
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_v2_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mandabrain -d mandabrain_v2"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_legacy_data:
+  postgres_v2_data:
