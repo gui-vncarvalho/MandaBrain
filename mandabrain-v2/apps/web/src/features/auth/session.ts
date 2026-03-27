@@ -3,6 +3,7 @@ import type { LoginSuccess } from './types';
 
 export const SESSION_COOKIE_NAME = 'mb_session';
 const DEFAULT_TTL_SECONDS = 60 * 60 * 12;
+const MIN_SECRET_LENGTH = 32;
 
 export type SessionUser = LoginSuccess['user'];
 
@@ -17,7 +18,15 @@ type CreateTokenOptions = {
 };
 
 function getSessionSecret(): string {
-  return process.env.SESSION_SECRET || 'dev-only-change-me';
+  const secret = process.env.SESSION_SECRET;
+
+  if (!secret || secret.length < MIN_SECRET_LENGTH) {
+    throw new Error(
+      `SESSION_SECRET inválido. Defina um segredo com pelo menos ${MIN_SECRET_LENGTH} caracteres.`
+    );
+  }
+
+  return secret;
 }
 
 function sign(value: string): string {

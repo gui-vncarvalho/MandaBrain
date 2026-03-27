@@ -3,18 +3,20 @@ import { LoginForm } from '@/components/login-form';
 
 export default function LoginPage() {
   return (
-    <main style={{ maxWidth: 900, margin: '0 auto', padding: 24, fontFamily: 'sans-serif' }}>
-      <h1>Login (v2 - etapa 2)</h1>
-      <p>
-        Estrutura inicial de autenticação para evoluirmos para integração com backend e banco
-        versionado.
-      </p>
+    <main className="page">
+      <section className="card">
+        <h1 className="title">Login (v2 - etapa 3)</h1>
+        <p className="subtitle">
+          Estrutura inicial de autenticação para evoluirmos para integração com backend e banco
+          versionado.
+        </p>
 
-      <LoginForm />
+        <LoginForm />
 
-      <p style={{ marginTop: 16 }}>
-        <Link href="/">← Voltar para home</Link>
-      </p>
+        <p className="footer-link">
+          <Link href="/">← Voltar para home</Link>
+        </p>
+      </section>
     </main>
   );
 }

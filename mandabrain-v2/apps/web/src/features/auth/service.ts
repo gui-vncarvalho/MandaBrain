@@ -31,6 +31,20 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   return payload.user;
 }
 
+export async function refreshSession(): Promise<AuthUser | null> {
+  const response = await fetch('/api/auth/refresh', {
+    method: 'POST',
+    credentials: 'include'
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const payload = (await response.json()) as { user: AuthUser };
+  return payload.user;
+}
+
 export async function logout(): Promise<void> {
   await fetch('/api/auth/logout', {
     method: 'POST',

@@ -1,5 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createSessionToken, parseSessionToken } from '../../src/features/auth/session';
+
+const ORIGINAL_SECRET = process.env.SESSION_SECRET;
+
+beforeEach(() => {
+  process.env.SESSION_SECRET = 'test-secret-com-mais-de-32-caracteres-123';
+});
+
+afterEach(() => {
+  process.env.SESSION_SECRET = ORIGINAL_SECRET;
+});
 
 describe('session token (signed)', () => {
   it('serializa e desserializa usuário da sessão com assinatura válida', () => {
@@ -25,5 +35,13 @@ describe('session token (signed)', () => {
     );
 
     expect(parseSessionToken(token, 3_000)).toBeNull();
+  });
+
+  it('lança erro quando SESSION_SECRET está ausente', () => {
+    delete process.env.SESSION_SECRET;
+
+    expect(() =>
+      createSessionToken({ id: 10, name: 'aluno', role: 'student' }, { nowMs: 1_000 })
+    ).toThrow('SESSION_SECRET inválido');
   });
 });

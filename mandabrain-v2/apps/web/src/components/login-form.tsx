@@ -31,37 +31,37 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ display: 'grid', gap: 12, maxWidth: 360 }}>
-      <label>
+    <form onSubmit={onSubmit} className="grid-form">
+      <label className="label">
         E-mail
         <input
+          className="input"
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="voce@email.com"
-          style={{ width: '100%', padding: 8 }}
           required
         />
       </label>
 
-      <label>
+      <label className="label">
         Senha
         <input
+          className="input"
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="mínimo 8 caracteres"
-          style={{ width: '100%', padding: 8 }}
           required
         />
       </label>
 
-      <button type="submit" disabled={loading} style={{ padding: 10, cursor: 'pointer' }}>
+      <button className="button" type="submit" disabled={loading}>
         {loading ? 'Entrando...' : 'Entrar'}
       </button>
 
-      {error ? <p style={{ color: '#c62828' }}>{error}</p> : null}
-      {success ? <p style={{ color: '#2e7d32' }}>{success}</p> : null}
+      {error ? <p className="feedback error">{error}</p> : null}
+      {success ? <p className="feedback success">{success}</p> : null}
     </form>
   );
 }

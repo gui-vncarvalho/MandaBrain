@@ -27,18 +27,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: errors[0] }, { status: 400 });
   }
 
-  const payload = buildLoginSuccess(body.email);
-  const response = NextResponse.json(payload, { status: 200 });
+  try {
+    const payload = buildLoginSuccess(body.email);
+    const response = NextResponse.json(payload, { status: 200 });
 
-  response.cookies.set({
-    name: SESSION_COOKIE_NAME,
-    value: createSessionToken(payload.user),
-    httpOnly: true,
-    sameSite: 'lax',
-    path: '/',
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 60 * 60 * 12
-  });
+    response.cookies.set({
+      name: SESSION_COOKIE_NAME,
+      value: createSessionToken(payload.user),
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 60 * 60 * 12
+    });
 
-  return response;
+    return response;
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : 'Falha de configuração da sessão. Verifique SESSION_SECRET.'
+      },
+      { status: 500 }
+    );
+  }
 }

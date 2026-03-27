@@ -9,21 +9,23 @@ export default async function DashboardPage() {
   const user = token ? parseSessionToken(token) : null;
 
   return (
-    <main style={{ maxWidth: 900, margin: '0 auto', padding: 24, fontFamily: 'sans-serif' }}>
-      <h1>Dashboard (v2 - etapa 3)</h1>
-      {user ? (
-        <p>
-          Sessão ativa para <strong>{user.name}</strong> ({user.role}).
+    <main className="page">
+      <section className="card">
+        <h1 className="title">Dashboard (v2 - etapa 3)</h1>
+        {user ? (
+          <p className="subtitle">
+            Sessão ativa para <strong>{user.name}</strong> ({user.role}).
+          </p>
+        ) : (
+          <p className="feedback error">Nenhuma sessão válida encontrada.</p>
+        )}
+
+        <LogoutButton />
+
+        <p className="footer-link">
+          <Link href="/">← Voltar para home</Link>
         </p>
-      ) : (
-        <p>Nenhuma sessão válida encontrada.</p>
-      )}
-
-      <LogoutButton />
-
-      <p style={{ marginTop: 16 }}>
-        <Link href="/">← Voltar para home</Link>
-      </p>
+      </section>
     </main>
   );
 }
