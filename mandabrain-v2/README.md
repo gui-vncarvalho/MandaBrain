@@ -25,6 +25,19 @@ npm run dev
 - Recomendação: segredo com 32+ caracteres
 - Cookie: `mb_session` (`httpOnly`, `sameSite=lax`)
 
+## Usuários mock para login
+
+> O mock aceita qualquer e-mail válido com senha de no mínimo 8 caracteres.
+
+- **Admin**: e-mail contendo `admin`
+  - Exemplo: `admin@mandabrain.com`
+- **Professor**: e-mail contendo `prof`
+  - Exemplo: `prof.julia@mandabrain.com`
+- **Aluno**: qualquer outro e-mail válido
+  - Exemplo: `aluno@mandabrain.com`
+
+Senha sugerida para testes: `12345678`.
+
 ## Fluxos implementados
 
 - `GET /api/health`
@@ -36,6 +49,26 @@ npm run dev
 - `GET /dashboard` (protegida)
 - `GET /cursos` (protegida, mock)
 - `GET /cursos/[slug]` (protegida, mock)
+
+## Docker Compose (legado + v2)
+
+Você pode subir MySQL legado + PostgreSQL v2 em paralelo por **qualquer um** dos arquivos:
+
+- `./docker-compose.yml` (raiz do repositório)
+- `./mandabrain-v2/docker-compose.yml`
+
+Comando (na raiz):
+
+```bash
+docker compose up -d
+```
+
+Comando (dentro de `mandabrain-v2`):
+
+```bash
+cd mandabrain-v2
+docker compose up -d
+```
 
 ## Objetivo da etapa atual
 
