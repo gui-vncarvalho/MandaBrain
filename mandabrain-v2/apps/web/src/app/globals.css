@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply min-h-screen bg-slate-50 text-slate-800 antialiased;
+  }
+
+  body {
+    background-image: radial-gradient(circle at top, #eef4ff, #f8fafc 45%);
+  }
+
+  a {
+    @apply text-blue-600 hover:underline;
+  }
+}
