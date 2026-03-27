@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout, refreshSession } from '@/features/auth/service';
+import { Button } from '@/components/ui/button';
 
 export function LogoutButton() {
   const router = useRouter();
@@ -21,14 +22,14 @@ export function LogoutButton() {
   }
 
   return (
-    <div className="inline-actions">
-      <button className="button" type="button" onClick={handleRefresh}>
+    <div className="flex flex-wrap items-center gap-3">
+      <Button type="button" onClick={handleRefresh}>
         Renovar sessão
-      </button>
-      <button className="button secondary" type="button" onClick={handleLogout}>
+      </Button>
+      <Button type="button" variant="secondary" onClick={handleLogout}>
         Sair
-      </button>
-      {status ? <small className="feedback">{status}</small> : null}
+      </Button>
+      {status ? <small className="text-sm text-slate-600">{status}</small> : null}
     </div>
   );
 }

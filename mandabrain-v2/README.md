@@ -1,22 +1,15 @@
-# MandaBrain v2 (bootstrap)
+# MandaBrain v2 (frontend)
 
-Esta pasta inicia a migração incremental do projeto legado para uma arquitetura moderna.
+Migração incremental do frontend legado para Next.js, mantendo o PHP atual intacto.
 
-## Objetivo desta etapa
+## Stack desta fase
 
-- Criar uma base **isolada** para o novo frontend em Next.js.
-- Manter o sistema legado em PHP sem alterações funcionais.
-- Garantir testes automatizados desde o início.
+- Next.js 14 + TypeScript
+- Tailwind CSS + componentes no padrão shadcn/ui
+- Vitest para testes unitários
+- Sessão assinada em cookie `httpOnly`
 
-## Estrutura atual
-
-```txt
-mandabrain-v2/
-  apps/
-    web/     # Next.js + TypeScript + Vitest
-```
-
-## Como executar
+## Execução local
 
 ```bash
 cd mandabrain-v2/apps/web
@@ -28,39 +21,24 @@ npm run dev
 
 ## Sessão assinada
 
-A sessão usa token assinado por HMAC SHA-256.
+- Variável obrigatória: `SESSION_SECRET`
+- Recomendação: segredo com 32+ caracteres
+- Cookie: `mb_session` (`httpOnly`, `sameSite=lax`)
 
-- Variável necessária: `SESSION_SECRET` (`.env.local`)
-- Recomendação: valor com 32+ caracteres
-- Cookie: `mb_session` (httpOnly, sameSite=lax)
+## Fluxos implementados
 
-## Fluxos disponíveis
+- `GET /api/health`
+- `GET /login`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `POST /api/auth/refresh`
+- `POST /api/auth/logout`
+- `GET /dashboard` (protegida)
+- `GET /cursos` (protegida, mock)
+- `GET /cursos/[slug]` (protegida, mock)
 
-- `GET /api/health` (health-check)
-- `GET /login` (fluxo inicial de autenticação)
-- `POST /api/auth/login` (login com criação de cookie httpOnly assinado)
-- `GET /api/auth/me` (retorna usuário da sessão)
-- `POST /api/auth/refresh` (renova expiração da sessão)
-- `POST /api/auth/logout` (encerra sessão)
-- `GET /dashboard` (rota protegida por middleware)
+## Objetivo da etapa atual
 
-### Exemplo de payload login
-
-```json
-{
-  "email": "aluno@mandabrain.com",
-  "password": "12345678"
-}
-```
-
-## CI
-
-Workflow de testes automatizados para o frontend:
-
-- `.github/workflows/web-ci.yml`
-
-## Próximos passos
-
-1. Substituir mock de login por integração com backend real.
-2. Implementar refresh token com rotação e revogação no backend.
-3. Iniciar módulo backend v2 com PostgreSQL e migrações.
+- Validar navegação e estrutura de produto com dados mock.
+- Padronizar UI para acelerar próximas features.
+- Manter evolução coberta por testes em cada etapa.

@@ -3,8 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { login } from '@/features/auth/service';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
-export function LoginForm() {
+type LoginFormProps = {
+  redirectTo?: string;
+};
+
+export function LoginForm({ redirectTo = '/dashboard' }: LoginFormProps) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +27,7 @@ export function LoginForm() {
     try {
       const result = await login({ email, password });
       setSuccess(`Login OK: ${result.user.name} (${result.user.role})`);
-      router.push('/dashboard');
+      router.push(redirectTo);
       router.refresh();
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Erro inesperado.');
@@ -31,11 +37,10 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid-form">
-      <label className="label">
+    <form onSubmit={onSubmit} className="grid gap-4">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         E-mail
-        <input
-          className="input"
+        <Input
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -44,10 +49,9 @@ export function LoginForm() {
         />
       </label>
 
-      <label className="label">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Senha
-        <input
-          className="input"
+        <Input
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
@@ -56,12 +60,12 @@ export function LoginForm() {
         />
       </label>
 
-      <button className="button" type="submit" disabled={loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? 'Entrando...' : 'Entrar'}
-      </button>
+      </Button>
 
-      {error ? <p className="feedback error">{error}</p> : null}
-      {success ? <p className="feedback success">{success}</p> : null}
+      {error ? <p className="text-sm font-medium text-red-700">{error}</p> : null}
+      {success ? <p className="text-sm font-medium text-emerald-700">{success}</p> : null}
     </form>
   );
 }

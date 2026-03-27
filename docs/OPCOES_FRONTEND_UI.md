@@ -5,7 +5,7 @@
 - **Como funciona:** manter Next.js puro e estilizar com CSS Modules e variáveis globais.
 - **Prós:** simples, sem dependências extras, ótimo para começar rápido.
 - **Contras:** pode exigir mais esforço manual em componentes complexos.
-- **Indicação:** ideal para etapa atual (estabilização funcional + melhoria visual incremental).
+- **Indicação:** boa para bootstrap inicial.
 
 ## Opção 2 — Tailwind CSS + shadcn/ui (equilíbrio)
 
@@ -21,9 +21,8 @@
 - **Contras:** bundle maior e customização visual pode ficar mais trabalhosa.
 - **Indicação:** útil se prioridade for painel administrativo robusto rapidamente.
 
-## Recomendação
+## Decisão registrada
 
-Para seu caso (migração incremental com foco em funcionamento e evolução contínua), recomendo:
+**Selecionada: Opção 2 (Tailwind CSS + shadcn/ui).**
 
-1. **Agora:** Opção 1 (já iniciada neste repositório);
-2. **Próxima fase:** migrar para Opção 2 (Tailwind + shadcn/ui) quando o fluxo de auth/backend estabilizar.
+Aplicada no frontend v2 para iniciar as próximas features com base visual e componentes reutilizáveis.

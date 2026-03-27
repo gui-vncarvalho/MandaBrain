@@ -1,31 +1,66 @@
 import Link from 'next/link';
-import { cookies } from 'next/headers';
-import { parseSessionToken, SESSION_COOKIE_NAME } from '@/features/auth/session';
+import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/components/logout-button';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { getSessionUser } from '@/features/auth/get-session-user';
+import { getLearningSummary } from '@/features/courses/mock-data';
 
 export default async function DashboardPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
-  const user = token ? parseSessionToken(token) : null;
+  const user = await getSessionUser();
+
+  if (!user) {
+    redirect('/login?from=/dashboard');
+  }
+
+  const summary = getLearningSummary();
 
   return (
-    <main className="page">
-      <section className="card">
-        <h1 className="title">Dashboard (v2 - etapa 3)</h1>
-        {user ? (
-          <p className="subtitle">
-            Sessão ativa para <strong>{user.name}</strong> ({user.role}).
-          </p>
-        ) : (
-          <p className="feedback error">Nenhuma sessão válida encontrada.</p>
-        )}
+    <main className="mx-auto max-w-6xl px-4 py-8">
+      <Card>
+        <CardHeader>
+          <CardTitle>Dashboard</CardTitle>
+          <CardDescription>
+            Sessão ativa para <strong>{user.name}</strong>.
+          </CardDescription>
+          <div className="pt-2">
+            <Badge variant="outline">Perfil: {user.role}</Badge>
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-6">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <StatCard label="Cursos disponíveis" value={`${summary.totalCourses}`} />
+            <StatCard label="Aulas concluídas" value={`${summary.completedLessons}/${summary.totalLessons}`} />
+            <StatCard label="Progresso geral" value={`${summary.percent}%`} />
+          </div>
 
-        <LogoutButton />
+          <div className="flex flex-wrap gap-3">
+            <Link href="/cursos" className="no-underline hover:no-underline">
+              <Button>Explorar cursos</Button>
+            </Link>
+            <Link href="/" className="no-underline hover:no-underline">
+              <Button variant="ghost">Voltar para home</Button>
+            </Link>
+          </div>
 
-        <p className="footer-link">
-          <Link href="/">← Voltar para home</Link>
-        </p>
-      </section>
+          <LogoutButton />
+        </CardContent>
+      </Card>
     </main>
+  );
+}
+
+type StatCardProps = {
+  label: string;
+  value: string;
+};
+
+function StatCard({ label, value }: StatCardProps) {
+  return (
+    <article className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+      <span className="block text-sm text-slate-500">{label}</span>
+      <strong className="mt-1 block text-2xl text-slate-800">{value}</strong>
+    </article>
   );
 }
