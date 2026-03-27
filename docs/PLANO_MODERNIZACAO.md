@@ -72,6 +72,28 @@ Pelos arquivos atuais, o projeto concentra:
 2. Configurar Prisma + migrações.
 3. Implementar autenticação segura (login, refresh, logout).
 
+
+## 3.1) Status atual da Fase 1 — Fundamentos
+
+### ✅ Já concluído
+
+- API v2 iniciada em `apps/api` com NestJS e módulos base:
+  - `auth`
+  - `users`
+  - `courses`
+  - `classes`
+  - `files`
+- Prisma configurado com schema inicial e migração SQL versionada.
+- Fluxo de autenticação seguro implementado (login, refresh, logout) com:
+  - hash de senha com `bcryptjs`;
+  - emissão de `accessToken` e `refreshToken`;
+  - rotação simples de refresh token.
+- Testes unitários iniciais da camada de auth adicionados.
+
+### 🔜 Próxima fase recomendada
+
+Com os fundamentos fechados, o próximo foco é a **Fase 2 (Frontend novo conectado à API real)**.
+
 ### Fase 2 — Frontend novo (2 a 4 semanas)
 
 1. Criar layout e design system básico.

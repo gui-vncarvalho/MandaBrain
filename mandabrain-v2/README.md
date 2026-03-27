@@ -50,6 +50,29 @@ Senha sugerida para testes: `12345678`.
 - `GET /cursos` (protegida, mock)
 - `GET /cursos/[slug]` (protegida, mock)
 
+
+## Backend v2 (Fase 1 concluída)
+
+A API base em NestJS foi criada em `mandabrain-v2/apps/api` com módulos:
+
+- `auth`
+- `users`
+- `courses`
+- `classes`
+- `files`
+
+Para executar:
+
+```bash
+cd mandabrain-v2/apps/api
+cp .env.example .env
+npm install
+npm run prisma:generate
+npm run prisma:migrate
+npm run test
+npm run start:dev
+```
+
 ## Docker Compose (legado + v2)
 
 Você pode subir MySQL legado + PostgreSQL v2 em paralelo por **qualquer um** dos arquivos:
