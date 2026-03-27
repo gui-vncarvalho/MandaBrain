@@ -20,30 +20,45 @@ mandabrain-v2/
 
 ```bash
 cd mandabrain-v2/apps/web
+cp .env.example .env.local
 npm install
 npm run test
 npm run dev
 ```
 
-## Check de saúde
+## Sessão assinada
 
-Com a aplicação em execução:
+A sessão agora usa token assinado por HMAC SHA-256.
 
-- `GET http://localhost:3000/api/health`
+- Variável necessária: `SESSION_SECRET` (`.env.local`)
+- Cookie: `mb_session` (httpOnly, sameSite=lax)
 
-Resposta esperada (exemplo):
+## Fluxos disponíveis
+
+- `GET /api/health` (health-check)
+- `GET /login` (fluxo inicial de autenticação)
+- `POST /api/auth/login` (login com criação de cookie httpOnly assinado)
+- `GET /api/auth/me` (retorna usuário da sessão)
+- `POST /api/auth/logout` (encerra sessão)
+- `GET /dashboard` (rota protegida por middleware)
+
+### Exemplo de payload login
 
 ```json
 {
-  "service": "mandabrain-web",
-  "status": "ok",
-  "timestamp": "2026-03-27T00:00:00.000Z",
-  "version": "v2-bootstrap"
+  "email": "aluno@mandabrain.com",
+  "password": "12345678"
 }
 ```
 
+## CI
+
+Workflow de testes automatizados para o frontend:
+
+- `.github/workflows/web-ci.yml`
+
 ## Próximos passos
 
-1. Iniciar módulo de autenticação no backend v2.
-2. Integrar frontend de login ao backend v2.
-3. Introduzir banco PostgreSQL com migrações versionadas.
+1. Substituir mock de login por integração com backend real.
+2. Implementar refresh token + rotação.
+3. Iniciar módulo backend v2 com PostgreSQL e migrações.
