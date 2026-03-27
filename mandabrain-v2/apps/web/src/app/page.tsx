@@ -13,6 +13,7 @@ export default function HomePage() {
         <li>✅ Endpoint de health-check disponível em <code>/api/health</code>.</li>
         <li>✅ Suite de testes inicial configurada com Vitest.</li>
         <li>✅ Estrutura inicial de autenticação disponível em <code>/login</code>.</li>
+        <li>✅ Sessão em cookie httpOnly + proteção de rota em <code>/dashboard</code>.</li>
       </ul>
 
       <p>

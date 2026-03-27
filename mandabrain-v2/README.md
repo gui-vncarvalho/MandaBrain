@@ -29,7 +29,10 @@ npm run dev
 
 - `GET /api/health` (health-check)
 - `GET /login` (fluxo inicial de autenticação)
-- `POST /api/auth/login` (mock de autenticação para evolução incremental)
+- `POST /api/auth/login` (login com criação de cookie httpOnly)
+- `GET /api/auth/me` (retorna usuário da sessão)
+- `POST /api/auth/logout` (encerra sessão)
+- `GET /dashboard` (rota protegida por middleware)
 
 ### Exemplo de payload login
 
@@ -49,5 +52,5 @@ Workflow de testes automatizados para o frontend:
 ## Próximos passos
 
 1. Substituir mock de login por integração com backend real.
-2. Introduzir persistência de sessão segura (cookies httpOnly / JWT com refresh).
+2. Introduzir persistência de sessão segura (cookies assinados + refresh token).
 3. Iniciar módulo backend v2 com PostgreSQL e migrações.

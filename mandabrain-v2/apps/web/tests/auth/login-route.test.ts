@@ -12,6 +12,12 @@ describe('buildLoginSuccess', () => {
     const result = buildLoginSuccess('aluno@mandabrain.com');
 
     expect(result.user.role).toBe('student');
-    expect(result.accessToken).toBe('dev-token-mandabrain-v2');
+    expect(result.user.name).toBe('aluno');
+  });
+
+  it('retorna role teacher quando email contém prof', () => {
+    const result = buildLoginSuccess('prof.julia@mandabrain.com');
+
+    expect(result.user.role).toBe('teacher');
   });
 });

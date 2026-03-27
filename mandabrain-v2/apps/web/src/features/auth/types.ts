@@ -3,13 +3,16 @@ export type LoginInput = {
   password: string;
 };
 
+export type UserRole = 'student' | 'teacher' | 'admin';
+
+export type AuthUser = {
+  id: number;
+  name: string;
+  role: UserRole;
+};
+
 export type LoginSuccess = {
-  accessToken: string;
-  user: {
-    id: number;
-    name: string;
-    role: 'student' | 'teacher' | 'admin';
-  };
+  user: AuthUser;
 };
 
 export type LoginError = {

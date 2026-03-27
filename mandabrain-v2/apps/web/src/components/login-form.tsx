@@ -1,9 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { login } from '@/features/auth/service';
 
 export function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -19,6 +21,8 @@ export function LoginForm() {
     try {
       const result = await login({ email, password });
       setSuccess(`Login OK: ${result.user.name} (${result.user.role})`);
+      router.push('/dashboard');
+      router.refresh();
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Erro inesperado.');
     } finally {
